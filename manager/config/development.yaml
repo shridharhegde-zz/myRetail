@@ -1,0 +1,21 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 3000
+  adminConnectors:
+    - type: http
+      port: 3001
+
+logging:
+  level: INFO
+  loggers:
+    com.aakn.workstore: DEBUG
+    org.hibernate: ERROR
+  appenders:
+    - type: console
+
+clientConfiguration:
+  minThreads: 1
+  maxThreads: 8
+  timeout: 15s
+  connectionTimeout: 15s
