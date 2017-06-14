@@ -19,3 +19,12 @@ clientConfiguration:
   maxThreads: 8
   timeout: 15s
   connectionTimeout: 15s
+
+redis:
+  endpoint: localhost:6379
+  password: null
+  minIdle: 0
+  maxIdle: 0
+  maxTotal: 1924
+  ssl: false
+  timeout: 2000

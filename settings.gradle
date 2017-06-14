@@ -19,5 +19,5 @@ include 'services:webservice'
 rootProject.name = 'myRetail'
 
 include ':manager'
-include 'helloWorld'
+include 'products'
 

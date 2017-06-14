@@ -56,6 +56,7 @@ subprojects {
         compile "com.google.inject:guice:$guiceVersion"
         compile "com.hubspot.dropwizard:dropwizard-guice:$dropwizardGuiceVersion"
         compile "io.dropwizard:dropwizard-client:$dropwizardVersion"
+        compile "com.bendb.dropwizard:dropwizard-redis:$dropwizardRedisVersion"
 
         testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
         testCompile "org.spockframework:spock-core:$spockVersion"

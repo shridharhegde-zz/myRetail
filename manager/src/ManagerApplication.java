@@ -1,7 +1,10 @@
+import com.bendb.dropwizard.redis.JedisBundle;
+import com.bendb.dropwizard.redis.JedisFactory;
 import com.hubspot.dropwizard.guice.GuiceBundle;
 
 import config.ManagerConfiguration;
 import config.ManagerModule;
+import config.ProductModule;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -27,9 +30,17 @@ public class ManagerApplication extends Application<ManagerConfiguration> {
     GuiceBundle<ManagerConfiguration> guiceBundle =
         GuiceBundle.<ManagerConfiguration>newBuilder()
             .addModule(new ManagerModule())
+            .addModule(new ProductModule())
             .setConfigClass(ManagerConfiguration.class)
             .build();
     bootstrap.addBundle(guiceBundle);
+
+    bootstrap.addBundle(new JedisBundle<ManagerConfiguration>() {
+      @Override
+      public JedisFactory getJedisFactory(ManagerConfiguration configuration) {
+        return configuration.getJedisFactory();
+      }
+    });
   }
 
   @Override

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bendb.dropwizard:dropwizard-redis:1.1.0-0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bendb.dropwizard/dropwizard-redis/1.1.0-0/fbdd2b2854b65bd8b53ba999a3d4191303c78cd8/dropwizard-redis-1.1.0-0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bendb.dropwizard/dropwizard-redis/1.1.0-0/e5c7d95c6f582adfd9559956c93c6fec6978ddbd/dropwizard-redis-1.1.0-0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
