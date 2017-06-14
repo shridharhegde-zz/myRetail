@@ -1,5 +1,8 @@
+import com.google.inject.Stage;
+
 import com.bendb.dropwizard.redis.JedisBundle;
 import com.bendb.dropwizard.redis.JedisFactory;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.hubspot.dropwizard.guice.GuiceBundle;
 
 import config.ManagerConfiguration;
@@ -32,7 +35,7 @@ public class ManagerApplication extends Application<ManagerConfiguration> {
             .addModule(new ManagerModule())
             .addModule(new ProductModule())
             .setConfigClass(ManagerConfiguration.class)
-            .build();
+            .build(Stage.DEVELOPMENT);
     bootstrap.addBundle(guiceBundle);
 
     bootstrap.addBundle(new JedisBundle<ManagerConfiguration>() {
@@ -46,6 +49,7 @@ public class ManagerApplication extends Application<ManagerConfiguration> {
   @Override
   public void run(ManagerConfiguration configuration, Environment environment)
       throws Exception {
-    log.info("Application has started!!");
+    environment.getObjectMapper().registerModule(new Jdk8Module());
+    log.info("My Retail Application has started!!");
   }
 }

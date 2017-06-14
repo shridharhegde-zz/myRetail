@@ -28,8 +28,4 @@ public class ManagerConfiguration extends Configuration {
   public JedisFactory getJedisFactory() {
     return redis;
   }
-
-  public void setJedisFactory(JedisFactory jedisFactory) {
-    this.redis = jedisFactory;
-  }
 }
