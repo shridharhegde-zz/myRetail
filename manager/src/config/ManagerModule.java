@@ -7,6 +7,7 @@ import com.google.inject.Singleton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
 
 /**
@@ -23,5 +24,17 @@ public class ManagerModule extends AbstractModule {
   @Singleton
   ObjectMapper providesObjectMapper(Provider<Environment> environmentProvider) {
     return environmentProvider.get().getObjectMapper();
+  }
+
+  @Provides
+  TargetClientConfiguration providesSfsClientConfiguration(Provider<ManagerConfiguration> provider) {
+    return provider.get().getTargetClientConfiguration();
+  }
+
+  @Provides
+  @Singleton
+  public JerseyClientConfiguration providesClientConfiguration(
+      Provider<ManagerConfiguration> configuration) {
+    return configuration.get().getClientConfiguration();
   }
 }

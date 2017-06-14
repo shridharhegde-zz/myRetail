@@ -28,3 +28,6 @@ redis:
   maxTotal: 1924
   ssl: false
   timeout: 2000
+
+targetClientConfiguration:
+  url :  https://api.target.com

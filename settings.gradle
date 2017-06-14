@@ -20,4 +20,5 @@ rootProject.name = 'myRetail'
 
 include ':manager'
 include 'products'
+include 'common'
 

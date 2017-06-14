@@ -28,4 +28,9 @@ public class ManagerConfiguration extends Configuration {
   public JedisFactory getJedisFactory() {
     return redis;
   }
+
+  @Valid
+  @NotNull
+  private TargetClientConfiguration targetClientConfiguration;
+
 }

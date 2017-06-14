@@ -8,6 +8,7 @@ import com.hubspot.dropwizard.guice.GuiceBundle;
 import config.ManagerConfiguration;
 import config.ManagerModule;
 import config.ProductModule;
+import config.TargetClientModule;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -34,6 +35,7 @@ public class ManagerApplication extends Application<ManagerConfiguration> {
         GuiceBundle.<ManagerConfiguration>newBuilder()
             .addModule(new ManagerModule())
             .addModule(new ProductModule())
+            .addModule(new TargetClientModule())
             .setConfigClass(ManagerConfiguration.class)
             .build(Stage.DEVELOPMENT);
     bootstrap.addBundle(guiceBundle);

@@ -2,16 +2,12 @@ package action;
 
 import com.google.inject.Inject;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.stream.Collectors;
 
-import java.io.IOException;
-
-import javax.ws.rs.core.Context;
-
+import client.TargetClient;
 import dto.GetProductResponse;
+import dto.ProductDetails;
 import lombok.extern.slf4j.Slf4j;
-import redis.clients.jedis.Jedis;
 
 /**
  * Created by shridhar.hegde on 14/06/17.
@@ -21,29 +17,22 @@ public class GetProductDetailsAction implements MyRetailAction<GetProductRespons
 
   private String productId;
 
-  @Context
-  private final Jedis jedis;
-
-  private final ObjectMapper mapper;
+  private final TargetClient targetClient;
 
   @Inject
-  public GetProductDetailsAction(Jedis jedis, ObjectMapper mapper) {
-    this.jedis = jedis;
-    this.mapper = mapper;
+  public GetProductDetailsAction(TargetClient targetClient) {
+    this.targetClient = targetClient;
   }
 
 
   @Override
   public GetProductResponse invoke() {
-    String productDetails = jedis.get(productId);
+    ProductDetails productDetails = targetClient.getProductName(productId);
     GetProductResponse getProductResponse = new GetProductResponse();
-    log.info("Product Details from Redis : {}",productDetails);
-    try {
-      JsonNode productJson = mapper.readTree(productDetails);
-      getProductResponse = mapper.treeToValue(productJson,GetProductResponse.class);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    getProductResponse.setCurrentPrice(targetClient.getPrice(productId).getCurrentPrice());
+    getProductResponse.setName(productDetails.getProductCompositeResponse().getItems().stream()
+        .map(ProductDetails.Items::getGeneralDescription).collect(Collectors.toList()));
+    getProductResponse.setId(Integer.valueOf(productId));
     return getProductResponse;
   }
 

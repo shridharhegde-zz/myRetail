@@ -57,6 +57,7 @@ subprojects {
         compile "com.hubspot.dropwizard:dropwizard-guice:$dropwizardGuiceVersion"
         compile "io.dropwizard:dropwizard-client:$dropwizardVersion"
         compile "com.bendb.dropwizard:dropwizard-redis:$dropwizardRedisVersion"
+        compile "com.netflix.hystrix:hystrix-core:$hystrixVersion"
 
         testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
         testCompile "org.spockframework:spock-core:$spockVersion"

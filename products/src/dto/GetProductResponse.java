@@ -1,6 +1,10 @@
 package dto;
 
+import com.google.common.collect.Lists;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
 
 import io.dropwizard.jackson.JsonSnakeCase;
 import lombok.Data;
@@ -15,7 +19,7 @@ public class GetProductResponse {
 
   private int id;
 
-  private String name;
+  private List<String> name = Lists.newArrayList();
 
   private CurrentPrice currentPrice;
 
