@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.dropwizard.jackson.JsonSnakeCase;
 import lombok.Data;
 
-import static dto.GetProductResponse.*;
+import static dto.ProductResponse.*;
 
 /**
  * Created by shridhar.hegde on 14/06/17.

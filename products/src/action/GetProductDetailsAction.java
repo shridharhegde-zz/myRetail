@@ -5,7 +5,7 @@ import com.google.inject.Inject;
 import java.util.stream.Collectors;
 
 import client.TargetClient;
-import dto.GetProductResponse;
+import dto.ProductResponse;
 import dto.ProductDetails;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by shridhar.hegde on 14/06/17.
  */
 @Slf4j
-public class GetProductDetailsAction implements MyRetailAction<GetProductResponse> {
+public class GetProductDetailsAction implements MyRetailAction<ProductResponse> {
 
   private String productId;
 
@@ -26,14 +26,14 @@ public class GetProductDetailsAction implements MyRetailAction<GetProductRespons
 
 
   @Override
-  public GetProductResponse invoke() {
+  public ProductResponse invoke() {
     ProductDetails productDetails = targetClient.getProductName(productId);
-    GetProductResponse getProductResponse = new GetProductResponse();
-    getProductResponse.setCurrentPrice(targetClient.getPrice(productId).getCurrentPrice());
-    getProductResponse.setName(productDetails.getProductCompositeResponse().getItems().stream()
+    ProductResponse productResponse = new ProductResponse();
+    productResponse.setCurrentPrice(targetClient.getPrice(productId).getCurrentPrice());
+    productResponse.setName(productDetails.getProductCompositeResponse().getItems().stream()
         .map(ProductDetails.Items::getGeneralDescription).collect(Collectors.toList()));
-    getProductResponse.setId(Integer.valueOf(productId));
-    return getProductResponse;
+    productResponse.setId(Integer.valueOf(productId));
+    return productResponse;
   }
 
   public GetProductDetailsAction withProductId(String productId) {

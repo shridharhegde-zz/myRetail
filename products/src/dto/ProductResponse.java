@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @JsonSnakeCase
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GetProductResponse {
+public class ProductResponse {
 
   private int id;
 
