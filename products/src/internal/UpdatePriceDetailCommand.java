@@ -42,7 +42,7 @@ public class UpdatePriceDetailCommand extends HystrixCommand<Response> {
 
   @Override
   protected Response run() throws Exception {
-    String response = jedis.set(productId,String.valueOf(mapper.convertValue(priceDetails, JsonNode.class)));
+    jedis.set(productId,String.valueOf(mapper.convertValue(priceDetails, JsonNode.class)));
     return Response.ok().build();
   }
 }
